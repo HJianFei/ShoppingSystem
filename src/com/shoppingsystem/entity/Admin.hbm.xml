@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.shoppingsystem.entity.Admin" table="admin">
+		<id name="admin_id" type="java.lang.Integer">
+			<column name="admin_id" not-null="true" />
+			<generator class="native" />
+		</id>
+		<property name="admin_name" type="java.lang.String">
+			<column name="admin_name" length="16" not-null="true">
+			</column>
+		</property>
+		<property name="admin_pass" type="java.lang.String">
+			<column name="admin_pass" length="16" not-null="true">
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

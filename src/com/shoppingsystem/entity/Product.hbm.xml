@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.shoppingsystem.entity.Product" table="product">
+		<id name="product_id" type="java.lang.Integer">
+			<column name="product_id" not-null="true" />
+			<generator class="native" />
+		</id>
+		<property name="product_number" type="java.lang.String">
+			<column name="product_number" length="16" not-null="true">
+			</column>
+		</property>
+		<property name="product_name" type="java.lang.String">
+			<column name="product_name" length="16" not-null="true">
+			</column>
+		</property>
+		<property name="product_pic" type="java.lang.String">
+			<column name="product_pic" length="16" not-null="false">
+			</column>
+		</property>
+		<property name="product_amount" type="java.lang.Integer">
+			<column name="product_amount" length="11" not-null="true">
+			</column>
+		</property>
+		<property name="product_type" type="java.lang.String">
+			<column name="product_type" length="11" not-null="true">
+			</column>
+		</property>
+		<property name="product_price" type="java.lang.Double">
+			<column name="product_price" length="11" not-null="true">
+			</column>
+		</property>
+		<property name="product_sales" type="java.lang.Integer">
+			<column name="product_sales" length="16" not-null="true">
+			</column>
+		</property>
+		<property name="product_remark" type="java.lang.String">
+			<column name="product_remark" length="200" not-null="false">
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

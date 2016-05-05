@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.custom.i18n.resources" value="globalMessages" />
+	<constant name="struts.url.includeParams" value="none" />
+	<constant name="struts.ui.theme" value="xhtml"></constant>
+
+	<package name="struts2" extends="json-default">
+		<!-- 管理员信息 -->
+		<action name="admin" class="adminAction">
+			<result name="admin">success.jsp</result>
+		</action>
+		<!-- 商品类别信息 -->
+		<action name="type" class="typeAction">
+			<result name="success">success.jsp</result>
+			<result name="allType">product/product_type.jsp</result>
+		</action>
+		<!-- 商品信息 -->
+		<action name="product" class="productAction">
+			<result name="add_product">product/product_add.jsp</result>
+			<result name="all_product">product/product_index.jsp</result>
+			<result name="detail_product">product/product_detail.jsp</result>
+			<result name="change_product">product/product_change.jsp</result>
+			<result name="show_product">index.jsp</result>
+		</action>
+		<!-- 会员信息 -->
+		<action name="user" class="userAction">
+			<result name="all_user">user/user_index.jsp</result>
+			<result name="tochange_user">user/user_change.jsp</result>
+			<result name="login_success">firstPage.jsp</result>
+			<result name="user_info">user/user_info.jsp</result>
+		</action>
+		<!-- 订单信息 -->
+		<action name="orders" class="ordersAction">
+			<result name="success">firstPage.jsp</result>
+			<result name="all_orders">orders/orders_all.jsp</result>
+		</action>
+		<!-- 订单商品信息 -->
+		<action name="orderproduct" class="orderproductAction">
+			<result name="success">firstPage.jsp</result>
+			<result name="tochange_user">user/user_change.jsp</result>
+		</action>
+	</package>
+</struts>    

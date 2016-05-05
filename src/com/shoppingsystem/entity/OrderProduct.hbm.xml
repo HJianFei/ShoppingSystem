@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.shoppingsystem.entity.OrderProduct" table="order_product">
+		<id name="orderproduct_id" type="java.lang.Integer">
+			<column name="orderproduct_id" not-null="true" />
+			<generator class="native" />
+		</id>
+		<property name="product_id" type="java.lang.Integer">
+			<column name="product_id" length="11" not-null="true">
+			</column>
+		</property>
+		<property name="orders_id" type="java.lang.Integer">
+			<column name="orders_id" length="11" not-null="true">
+			</column>
+		</property>
+		<property name="product_amount" type="java.lang.Integer">
+			<column name="product_amount" length="11" not-null="true">
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

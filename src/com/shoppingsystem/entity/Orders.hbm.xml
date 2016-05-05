@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.shoppingsystem.entity.Orders" table="orders">
+		<id name="orders_id" type="java.lang.Integer">
+			<column name="orders_id" not-null="true" />
+			<generator class="native" />
+		</id>
+		<property name="orders_number" type="java.lang.String">
+			<column name="orders_number" length="40" not-null="true">
+			</column>
+		</property>
+		<property name="users_id" type="java.lang.Integer">
+			<column name="users_id" length="11" not-null="true">
+			</column>
+		</property>
+		<property name="orders_time" type="timestamp">
+			<column name="orders_time" length="20" not-null="true">
+			</column>
+		</property>
+		<property name="orders_handler" type="java.lang.String">
+			<column name="orders_handler" length="4" not-null="true">
+			</column>
+		</property>
+		<property name="totalMenoy" type="java.lang.Double">
+			<column name="totalMenoy" length="11" not-null="true">
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
