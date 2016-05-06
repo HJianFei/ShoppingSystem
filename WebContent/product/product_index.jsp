@@ -35,10 +35,10 @@
 </head>
 <body>
 
-	<jsp:include page="../banner.jsp" />
+	<jsp:include page="../base/banner.jsp" />
 	<div class="page">
 		<div class="box mtop">
-			<jsp:include page="../left.jsp" />
+			<jsp:include page="../base/left.jsp" />
 			<div class="rightbox">
 				<h2 class="mbx">商品信息 &gt; 商品列表 &nbsp;&nbsp;&nbsp;</h2>
 				<div class="cztable">
@@ -73,6 +73,26 @@
 									</tr>
 								</c:forEach>
 							</c:if>
+							<tr>
+								<td colspan="7" align="center"><c:if test="${request.productlist!=null}">
+										<form
+											action="${pageContext.request.contextPath }/product!allProduct"
+											method="post">
+											共${request.pagecount }页，当前第${request.pagenow }页<a
+												href="${pageContext.request.contextPath }/product!allProduct?pagenow=1">
+												第一页</a>&nbsp;<a
+												href="${pageContext.request.contextPath }/product!allProduct?pagenow=${pagenow - 1}">上一页</a>&nbsp;
+											<a
+												href="${pageContext.request.contextPath }/product!allProduct?pagenow=${pagenow + 1}">下一页</a>&nbsp;
+											<a
+												href="${pageContext.request.contextPath }/product!allProduct?pagenow=${pagecount}">最后一页</a>转跳到
+											<input type="text" maxlength="3" size="3" name="pagenow" />页<input
+												style="height: 25px; width: auto; cursor: pointer"
+												type="submit" value="转跳" />
+										</form>
+									</c:if></td>
+							</tr>
+							</div>
 						</tbody>
 					</table>
 				</div>

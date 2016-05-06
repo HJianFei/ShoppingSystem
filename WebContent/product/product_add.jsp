@@ -35,10 +35,10 @@
 </head>
 <body>
 
-	<jsp:include page="../banner.jsp" />
+	<jsp:include page="../base/banner.jsp" />
 	<div class="page">
 		<div class="box mtop">
-			<jsp:include page="../left.jsp" />
+			<jsp:include page="../base/left.jsp" />
 			<div class="rightbox">
 
 				<h2 class="mbx">商品信息 &gt; 添加商品 &nbsp;&nbsp;&nbsp;</h2>

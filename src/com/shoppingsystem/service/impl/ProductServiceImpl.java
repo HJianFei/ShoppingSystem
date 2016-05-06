@@ -5,6 +5,8 @@ package com.shoppingsystem.service.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
+
 import com.shoppingsystem.dao.ProductDao;
 import com.shoppingsystem.entity.Product;
 import com.shoppingsystem.entity.Type;
@@ -56,6 +58,16 @@ public class ProductServiceImpl implements ProductService {
 
 	public void setProductDao(ProductDao productDao) {
 		this.productDao = productDao;
+	}
+	
+	@Override
+	public Query get(String hql) {
+		return productDao.get(hql);
+	}
+
+	@Override
+	public List<Product> getResult(String hql, int firstIndex, int maxSize) {
+		return productDao.getResult(hql, firstIndex, maxSize);
 	}
 
 }

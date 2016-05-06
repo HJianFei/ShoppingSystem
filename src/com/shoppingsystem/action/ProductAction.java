@@ -46,11 +46,43 @@ public class ProductAction extends ActionSupport {
 	 */
 	public String allProduct() {
 		HttpServletRequest request = ServletActionContext.getRequest();
+		int pageSize = 6; // 每页显示记录条数
+		int pageNow = 1; // 初始化页数
+
+		String spageNow = request.getParameter("pagenow");
+		if (spageNow != null) {
+			pageNow = Integer.parseInt(spageNow);
+		}
+		long pageMax = (long) productService.getQuery("from Product").size();
+		long pageCount = 0;
+		if (pageMax % pageSize == 0) {
+			pageCount = pageMax / pageSize; // 总的页数
+		} else {
+			pageCount = (pageMax / pageSize) + 1;
+
+		}
+
+		if (pageNow > pageCount || pageNow < 1) {
+			if (pageNow > pageCount) {
+				pageNow = (int) pageCount;
+			}
+
+			if (pageNow < 1) {
+				pageNow = 1;
+			}
+		}
 		List<Product> products = null;
 		String hql = "from Product p";
-		products = productService.getQuery(hql);
+		products = productService.getResult(hql, (pageNow - 1) * pageSize, pageSize);
 		request.setAttribute("productlist", products);
-		return "all_product";
+		request.setAttribute("pagenow", pageNow);
+		request.setAttribute("pagecount", pageCount);
+		String info = request.getParameter("flag");
+		if ("info".equals(info)) {
+			return "show_product";
+		} else {
+			return "all_product";
+		}
 	}
 
 	/**
@@ -62,9 +94,15 @@ public class ProductAction extends ActionSupport {
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Product p = new Product();
+		System.out.println(">>>>" + product.getProduct_id());
 		p = productService.findById(product.getProduct_id());
 		request.setAttribute("detail", p);
-		return "detail_product";
+		String info = request.getParameter("flag");
+		if ("info".equals(info)) {
+			return "product_detail";
+		} else {
+			return "detail_product";
+		}
 	}
 
 	/**
@@ -104,7 +142,12 @@ public class ProductAction extends ActionSupport {
 		String hql = "from Product p where Product_type='" + product.getProduct_type() + "'";
 		products = productService.getQuery(hql);
 		request.setAttribute("productlist", products);
-		return "all_product";
+		String info = request.getParameter("flag");
+		if ("info".equals(info)) {
+			return "show_product";
+		} else {
+			return "all_product";
+		}
 	}
 
 	/**
@@ -117,11 +160,6 @@ public class ProductAction extends ActionSupport {
 		productService.delete(product.getProduct_id());
 		allProduct();
 		return "all_product";
-	}
-
-	public String all_product() {
-		allProduct();
-		return "show_product";
 	}
 
 	/**
@@ -199,11 +237,19 @@ public class ProductAction extends ActionSupport {
 		session.setAttribute("totalMoney", totalMoney);
 		shoppingorder.remove(index);
 		try {
-			response.sendRedirect("user/user_shoppingcart.jsp");
+			response.sendRedirect("product!goToCart");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return "";
+	}
+
+	/**
+	 * 跳转到购物车
+	 */
+	public String goToCart() {
+
+		return "goToCart";
 	}
 
 	/**

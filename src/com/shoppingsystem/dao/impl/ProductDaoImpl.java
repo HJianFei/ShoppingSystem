@@ -5,6 +5,7 @@ package com.shoppingsystem.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.shoppingsystem.dao.ProductDao;
@@ -54,5 +55,22 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 		@SuppressWarnings("unchecked")
 		List<Type>types=this.getHibernateTemplate().find(hql);
 		return types;
+	}
+	@Override
+	public Query get(String hql) {
+		return this.getSessionFactory().openSession().createQuery(hql);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> getResult(String hql, int firstIndex, int maxSize) {
+		Query query = get(hql);
+		if (firstIndex == 0 && maxSize == 0) {
+			return query.list();
+		} else {
+			query.setFirstResult(firstIndex);
+			query.setMaxResults(maxSize);
+			return query.list();
+		}
 	}
 }

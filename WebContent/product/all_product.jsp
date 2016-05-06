@@ -52,12 +52,17 @@
 			<c:if test="${request.productlist!=null }">
 				<c:forEach items="${productlist}" var="s">
 					<tr>
-						<td class="goods"><img
-							src="${pageContext.request.contextPath}/Images/photo.jpg" alt="" /><br /><span>${s.product_name}</span></td>
-						<td class="subtotal" >${s.product_price }元</td>
+						<td class="goods"><a
+							href="${pageContext.request.contextPath}/product!detail_product?product.product_id=${s.product_id }"><img
+								src="${pageContext.request.contextPath}/Images/photo.jpg" alt="" /><br />
+							<br />
+							<br />
+							<br />${s.product_name}</a></td>
+						<td class="subtotal">${s.product_price }元</td>
 						<td class="count">${s.product_type }</td>
 						<td class="price">${s.product_remark }</td>
-						<td class="operation"><a href="${pageContext.request.contextPath}/product!addToCart?product_id=${s.product_id}">加入购物车</a></td>
+						<td class="operation"><a
+							href="${pageContext.request.contextPath}/product!addToCart?product_id=${s.product_id}">加入购物车</a></td>
 					</tr>
 				</c:forEach>
 			</c:if>

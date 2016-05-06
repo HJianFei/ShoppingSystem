@@ -6,7 +6,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<div class="banner">
+<div class="banner" >
 	<div class="bgh">
 		<div class="page">
 			<div id="logo">

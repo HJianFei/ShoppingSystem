@@ -34,12 +34,12 @@
 	type="text/javascript"></script>
 </head>
 <body>
-	<jsp:include page="banner.jsp" />
+	<jsp:include page="base/top.jsp" />
 	<div class="page">
 		<div class="box mtop">
-			<jsp:include page="recommend.jsp" />
+			<jsp:include page="${pageContext.request.contextPath}/base/recommend.jsp" />
 			<div class="rightbox">
-				<jsp:include page="all_product.jsp" />
+				<jsp:include page="${pageContext.request.contextPath}/base/all_product.jsp" />
 			</div>
 			
 		</div>

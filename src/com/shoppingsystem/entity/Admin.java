@@ -7,6 +7,7 @@ package com.shoppingsystem.entity;
  * @author HJianFei
  * @time 2016年4月28日
  */
+
 public class Admin {
 	private int admin_id;
 	private String admin_name;

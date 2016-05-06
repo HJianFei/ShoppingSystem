@@ -35,65 +35,66 @@
 </head>
 <body>
 
-	<jsp:include page="../banner.jsp" />
+	<jsp:include page="../base/banner.jsp" />
 	<div class="page">
 		<div class="box mtop">
-			<jsp:include page="../left.jsp" />
+			<jsp:include page="../base/left.jsp" />
 			<div class="rightbox">
 
 				<h2 class="mbx">会员信息 &gt; 添加会员 &nbsp;&nbsp;&nbsp;</h2>
 				<div class="cztable">
 					<form action="${pageContext.request.contextPath}/user!update"
 						method="post">
-						<table align="center" width="auto" cellpadding="0" cellspacing="0">
+						<table align="center" width="100%" cellpadding="0" cellspacing="0">
 							<tr>
-								<td align="right" width="auto">会员编号：</td>
+								<td>会员编号：</td>
 								<td><input type="text" name="user.user_id"
-									value="${request.user.user_id }" readonly="readonly" /></td>
+									value="${request.user.user_id}" readonly="readonly" /></td>
 							</tr>
 							<tr>
-								<td align="right" width="auto">会员名称：</td>
+								<td>会员名称：</td>
 								<td><input type="text" name="user.user_name"
 									value="${request.user.user_name }" /></td>
 							</tr>
 							<tr>
-								<td align="right" width="90">会员密码：</td>
+								<td>会员密码：</td>
 								<td><input type="text" name="user.user_pass"
 									value="${request.user.user_pass }" /></td>
 							</tr>
 							<tr>
-								<td align="right">会员昵称：</td>
+								<td>会员昵称：</td>
 								<td><input type="text" name="user.user_nickname"
 									value="${request.user.user_nickname }" /></td>
 							</tr>
 							<tr>
-								<td align="right">会员性别：</td>
-								<td><input type="radio" name="user.user_sex" value="男" checked="checked" />男<input
-									type="radio" name="user.user_sex" value="女" />女</td>
+								<td>会员性别：</td>
+								<td><input type="radio" name="user.user_sex" value="男"
+									checked="checked" />男<input type="radio" name="user.user_sex"
+									value="女" />女</td>
 							</tr>
 							<tr>
-								<td align="right">联系方式：</td>
+								<td>联系方式：</td>
 								<td><input type="text" name="user.user_phone"
 									value="${request.user.user_phone }" /></td>
 							</tr>
 							<tr>
-								<td align="right">会员邮箱：</td>
+								<td>会员邮箱：</td>
 								<td><input type="text" name="user.user_email"
 									value="${request.user.user_email }" /></td>
 							</tr>
 							<tr>
-								<td align="right">会员地址：</td>
-								<td colspan="2"><input type="text" name="user.user_address"
+								<td>会员地址：</td>
+								<td><input type="text" name="user.user_address"
 									value="${request.user.user_address }" /></td>
 							</tr>
 							<tr>
-								<td align="right">备注：</td>
-								<td colspan="2"><input type="text" name="user.user_remark"
+								<td>备注：</td>
+								<td><input type="text" name="user.user_remark"
 									value="${request.user.user_remark }" /></td>
 							</tr>
 							<tr>
-								<td colspan="2" align="center"><input type="submit"
-									value="提交" /><input type="reset" value="重置" /></td>
+								<td><input type="submit" value="提交" /><input type="reset"
+									value="重置" /></td>
 							</tr>
 						</table>
 					</form>

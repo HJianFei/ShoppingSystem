@@ -37,8 +37,14 @@ public class UserAction extends ActionSupport {
 
 	public String update() {
 		userService.update(user);
-		allUser();
-		return "all_user";
+		HttpServletRequest request = ServletActionContext.getRequest();
+		String flag = request.getParameter("flag");
+		if ("info".equals(flag)) {
+			return "shopping";
+		} else {
+			allUser();
+			return "all_user";
+		}
 	}
 
 	/**
