@@ -18,12 +18,15 @@ public class Product {
 	private double product_price;
 	private int product_sales;
 	private String product_remark;
+	private String fileName;
+	private String fileUrl;
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Product(int product_id, String product_name, String product_number, String product_pic, int product_amount,
-			String product_type, double product_price, int product_sales, String product_remark) {
+			String product_type, double product_price, int product_sales, String product_remark, String fileName,
+			String fileUrl) {
 		super();
 		this.product_id = product_id;
 		this.product_name = product_name;
@@ -34,6 +37,8 @@ public class Product {
 		this.product_price = product_price;
 		this.product_sales = product_sales;
 		this.product_remark = product_remark;
+		this.fileName = fileName;
+		this.fileUrl = fileUrl;
 	}
 	public int getProduct_id() {
 		return product_id;
@@ -89,13 +94,17 @@ public class Product {
 	public void setProduct_remark(String product_remark) {
 		this.product_remark = product_remark;
 	}
-	@Override
-	public String toString() {
-		return "Product [product_id=" + product_id + ", product_name=" + product_name + ", product_number="
-				+ product_number + ", product_pic=" + product_pic + ", product_amount=" + product_amount
-				+ ", product_type=" + product_type + ", product_price=" + product_price + ", product_sales="
-				+ product_sales + ", product_remark=" + product_remark + "]";
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getFileUrl() {
+		return fileUrl;
+	}
+	public void setFileUrl(String fileUrl) {
+		this.fileUrl = fileUrl;
 	}
 	
-
 }

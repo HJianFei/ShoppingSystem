@@ -58,9 +58,9 @@
 							<c:if test="${request.productlist!=null }">
 								<c:forEach items="${productlist}" var="s">
 									<tr>
-										<td class="goods"><img
+										<td class="goods"><a href="${pageContext.request.contextPath }/product!tochange_product?product.product_id=${s.product_id}"><img
 											src="${pageContext.request.contextPath}/Images/photo.jpg"
-											alt="" /><br /> <span>${s.product_name}</span></td>
+											alt="" /><br /> <span>${s.product_name}</span></a></td>
 										<td class="subtotal">${s.product_number }</td>
 										<td class="count">${s.product_type }</td>
 										<td class="subtotal">${s.product_price }元</td>

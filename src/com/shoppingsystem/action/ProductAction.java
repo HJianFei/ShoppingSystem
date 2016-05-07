@@ -3,6 +3,7 @@
  */
 package com.shoppingsystem.action;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,14 @@ public class ProductAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private Product product;
 	private ProductService productService;
+	// 上传文件三要素
+	private File file;
+	private String fileContentType;
+	private String fileFileName;
+	// 文件下载类型
+	private String contentType;
+	// 文件保存的路径
+	private String savePath;
 
 	/**
 	 * 添加商品信息
@@ -34,7 +43,7 @@ public class ProductAction extends ActionSupport {
 	 */
 	public String save() {
 
-		productService.save(product);
+		productService.save(product, savePath, fileFileName);
 		allProduct();
 		return "all_product";
 	}
@@ -48,12 +57,12 @@ public class ProductAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		int pageSize = 6; // 每页显示记录条数
 		int pageNow = 1; // 初始化页数
-
 		String spageNow = request.getParameter("pagenow");
 		if (spageNow != null) {
 			pageNow = Integer.parseInt(spageNow);
 		}
-		long pageMax = (long) productService.getQuery("from Product").size();
+		String sql = "from Product as p";
+		long pageMax = (long) productService.getQuery(sql).size();
 		long pageCount = 0;
 		if (pageMax % pageSize == 0) {
 			pageCount = pageMax / pageSize; // 总的页数
@@ -72,11 +81,12 @@ public class ProductAction extends ActionSupport {
 			}
 		}
 		List<Product> products = null;
-		String hql = "from Product p";
-		products = productService.getResult(hql, (pageNow - 1) * pageSize, pageSize);
+		// String hql = "from Product p";
+		products = productService.getResult(sql, (pageNow - 1) * pageSize, pageSize);
 		request.setAttribute("productlist", products);
 		request.setAttribute("pagenow", pageNow);
 		request.setAttribute("pagecount", pageCount);
+		request.setAttribute("index", "index");
 		String info = request.getParameter("flag");
 		if ("info".equals(info)) {
 			return "show_product";
@@ -94,7 +104,6 @@ public class ProductAction extends ActionSupport {
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Product p = new Product();
-		System.out.println(">>>>" + product.getProduct_id());
 		p = productService.findById(product.getProduct_id());
 		request.setAttribute("detail", p);
 		String info = request.getParameter("flag");
@@ -126,7 +135,7 @@ public class ProductAction extends ActionSupport {
 	 * @return
 	 */
 	public String change_product() {
-		productService.update(product);
+		productService.update(product, file, fileFileName);
 		detail_product();
 		return "detail_product";
 	}
@@ -139,12 +148,18 @@ public class ProductAction extends ActionSupport {
 	public String findWithType() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		List<Product> products = null;
-		String hql = "from Product p where Product_type='" + product.getProduct_type() + "'";
-		products = productService.getQuery(hql);
+		String product_name = request.getParameter("product_name");
+		String product_type = request.getParameter("product_type");
+		String sql = "from Product p where p.product_type='" + product_type + "'";
+		if (product_name != null && product_name != "") {
+			sql = "from Product as p where p.product_name like '%" + product_name + "%' or p.product_type like '%"
+					+ product_name + "%'";
+		}
+		products = productService.getQuery(sql);
 		request.setAttribute("productlist", products);
 		String info = request.getParameter("flag");
 		if ("info".equals(info)) {
-			return "show_product";
+			return "shows_product";
 		} else {
 			return "all_product";
 		}
@@ -173,7 +188,10 @@ public class ProductAction extends ActionSupport {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		HttpSession session = request.getSession();
 		String product_id = request.getParameter("product_id");
-		System.out.println(">>>product_id>>>" + product_id);
+		String user_id = (String) session.getAttribute("user_id");
+		if (user_id == null || user_id == "") {
+			return "login";
+		}
 		List<Product> shoppingorder = new ArrayList<Product>();
 
 		// 判断购物车是否为空
@@ -189,7 +207,6 @@ public class ProductAction extends ActionSupport {
 		// 遍历session中保存的信息，看是否存在相应的商品
 		for (Product pro : shoppingorder) {
 			if (product_id.equals(pro.getProduct_id() + "")) {
-				System.out.println("HHHH");
 				i++;
 			}
 		}
@@ -281,6 +298,46 @@ public class ProductAction extends ActionSupport {
 
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	public String getFileContentType() {
+		return fileContentType;
+	}
+
+	public void setFileContentType(String fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+
+	public String getFileFileName() {
+		return fileFileName;
+	}
+
+	public void setFileFileName(String fileFileName) {
+		this.fileFileName = fileFileName;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+	public String getSavePath() {
+		return savePath;
+	}
+
+	public void setSavePath(String savePath) {
+		this.savePath = savePath;
 	}
 
 }

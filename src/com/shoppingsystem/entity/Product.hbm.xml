@@ -39,5 +39,13 @@
 			<column name="product_remark" length="200" not-null="false">
 			</column>
 		</property>
+		<property name="fileName" type="java.lang.String">
+			<column name="fileName" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="fileUrl" type="java.lang.String">
+			<column name="fileUrl" length="100" not-null="false">
+			</column>
+		</property>
 	</class>
 </hibernate-mapping>

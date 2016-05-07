@@ -64,11 +64,11 @@ public class OrdersAction extends ActionSupport {
 		}
 		List<Orders> or = null;
 
-		String hql = "select new com.shoppingsystem.entity.Orders(o.orders_id,o.orders_number,o.orders_time,o.orders_handler,u.user_name) from Orders as o,User as u where o.users_id=u.user_id";
+		String hql = "select new com.shoppingsystem.entity.Orders(o.orders_id,o.orders_number,o.orders_time,o.orders_handler,u.user_name) from Orders as o,User as u where o.users_id=u.user_id ORDER BY o.orders_id DESC";
 		if ("1".equals(orders_handler)) {
-			hql = "select new com.shoppingsystem.entity.Orders(o.orders_id,o.orders_number,o.orders_time,o.orders_handler,u.user_name) from Orders as o,User as u where o.users_id=u.user_id and o.orders_handler='1'";
+			hql = "select new com.shoppingsystem.entity.Orders(o.orders_id,o.orders_number,o.orders_time,o.orders_handler,u.user_name) from Orders as o,User as u where o.users_id=u.user_id and o.orders_handler='1' ORDER BY o.orders_id DESC";
 		} else if ("0".equals(orders_handler)) {
-			hql = "select new com.shoppingsystem.entity.Orders(o.orders_id,o.orders_number,o.orders_time,o.orders_handler,u.user_name) from Orders as o,User as u where o.users_id=u.user_id and o.orders_handler='0'";
+			hql = "select new com.shoppingsystem.entity.Orders(o.orders_id,o.orders_number,o.orders_time,o.orders_handler,u.user_name) from Orders as o,User as u where o.users_id=u.user_id and o.orders_handler='0' ORDER BY o.orders_id DESC";
 		}
 
 		or = ordersService.getResult(hql, (pageNow - 1) * pageSize, pageSize);
@@ -84,40 +84,14 @@ public class OrdersAction extends ActionSupport {
 	 * @return
 	 */
 	public String MyOrders() {
+		
 		HttpServletRequest request = ServletActionContext.getRequest();
-		int pageSize = 6; // 每页显示记录条数
-		int pageNow = 1; // 初始化页数
-
-		String spageNow = request.getParameter("pagenow");
-		if (spageNow != null) {
-			pageNow = Integer.parseInt(spageNow);
-		}
-		long pageMax = (long) ordersService.getQuery("from Orders").size();
-		long pageCount = 0;
-		if (pageMax % pageSize == 0) {
-			pageCount = pageMax / pageSize; // 总的页数
-		} else {
-			pageCount = (pageMax / pageSize) + 1;
-
-		}
-
-		if (pageNow > pageCount || pageNow < 1) {
-			if (pageNow > pageCount) {
-				pageNow = (int) pageCount;
-			}
-
-			if (pageNow < 1) {
-				pageNow = 1;
-			}
-		}
 		List<Orders> or = null;
 		int users_id = orders.getUsers_id();
 		String hql = "select new com.shoppingsystem.entity.Orders(o.orders_id,o.orders_number,o.orders_time,o.orders_handler,u.user_name) from Orders as o,User as u where o.users_id=u.user_id and o.users_id='"
-				+ users_id + "'";
-		or = ordersService.getResult(hql, (pageNow - 1) * pageSize, pageSize);
+				+ users_id + "' ORDER BY orders_id DESC";
+		or = ordersService.getQuery(hql);
 		request.setAttribute("orderslist", or);
-		request.setAttribute("pagenow", pageNow);
-		request.setAttribute("pagecount", pageCount);
 		return "user_orders";
 	}
 

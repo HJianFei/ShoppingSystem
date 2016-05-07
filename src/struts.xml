@@ -10,6 +10,7 @@
 	<constant name="struts.custom.i18n.resources" value="globalMessages" />
 	<constant name="struts.url.includeParams" value="none" />
 	<constant name="struts.ui.theme" value="xhtml"></constant>
+	<constant name="struts.multipart.maxSize" value="100000000"/> 
 
 	<package name="struts2" extends="json-default">
 		<!-- 管理员信息 -->
@@ -30,6 +31,8 @@
 			<result name="show_product">product/index_product.jsp</result>
 			<result name="product_detail">product/detail_product.jsp</result>
 			<result name="goToCart">product/shoppingcart.jsp</result>
+			<result name="shows_product">product/shows_product.jsp</result>
+			<result name="login">user/user_login.jsp</result>
 		</action>
 		<!-- 会员信息 -->
 		<action name="user" class="userAction">
@@ -38,6 +41,7 @@
 			<result name="login_success">firstPage.jsp</result>
 			<result name="user_info">user/user_info.jsp</result>
 			<result name="shopping">firstPage.jsp</result>
+			<result name="login">user/user_login.jsp</result>
 		</action>
 		<!-- 订单信息 -->
 		<action name="orders" class="ordersAction">

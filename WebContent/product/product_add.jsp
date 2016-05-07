@@ -44,7 +44,7 @@
 				<h2 class="mbx">商品信息 &gt; 添加商品 &nbsp;&nbsp;&nbsp;</h2>
 				<div class="cztable">
 					<form action="${pageContext.request.contextPath}/product!save"
-						method="post">
+						method="post" enctype="multipart/form-data">
 						<table align="center" width="auto" cellpadding="0" cellspacing="0">
 							<tr>
 								<td align="right" width="auto">商品编号：</td>
@@ -75,7 +75,10 @@
 								<td colspan="2"><input type="text"
 									name="product.product_remark" /></td>
 							</tr>
-							<s:file label="商品图片" name="file_path" />
+							<tr>
+								<td>商品图片</td>
+								<td><input name="file" type="file" /></td>
+							</tr>
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
 									value="提交" /><input type="reset" value="重置" /></td>

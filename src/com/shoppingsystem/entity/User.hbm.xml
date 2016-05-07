@@ -8,7 +8,7 @@
 			<generator class="native" />
 		</id>
 		<property name="user_name" type="java.lang.String">
-			<column name="user_name" length="16" not-null="true">
+			<column name="user_name" length="16" not-null="false">
 			</column>
 		</property>
 		<property name="user_pass" type="java.lang.String">

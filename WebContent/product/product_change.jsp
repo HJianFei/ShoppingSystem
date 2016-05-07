@@ -43,7 +43,8 @@
 
 				<h2 class="mbx">商品信息 &gt; 添加商品 &nbsp;&nbsp;&nbsp;</h2>
 				<div class="cztable">
-					<form action="${pageContext.request.contextPath}/product!change_product"
+					<form
+						action="${pageContext.request.contextPath}/product!change_product"
 						method="post">
 						<table align="center" width="auto" cellpadding="0" cellspacing="0">
 							<tr>
@@ -85,7 +86,10 @@
 									name="product.product_remark"
 									value="${request.detail.product_remark}" /></td>
 							</tr>
-							<s:file label="商品图片" name="file_path" />
+							<tr>
+								<td>商品图片</td>
+								<td><input name="file" type="file" /></td>
+							</tr>
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
 									value="提交" /><input type="reset" value="重置" /></td>

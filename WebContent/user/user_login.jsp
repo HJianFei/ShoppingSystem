@@ -27,7 +27,8 @@
 					<td><input type="password" name="user.user_pass" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit" value="登录" /></td>
+					<td align="center"><input type="submit" value="登录" /></td>
+					<td  align="center"><a href="${pageContext.request.contextPath}/user/user_register.jsp"><input type="button" value="注册" /></a></td>
 				</tr>
 			</tbody>
 		</table>

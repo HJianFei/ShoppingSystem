@@ -34,6 +34,10 @@ public class UserAction extends ActionSupport {
 		allUser();
 		return "all_user";
 	}
+	public String register() {
+		userService.save(user);
+		return "login";
+	}
 
 	public String update() {
 		userService.update(user);
@@ -95,6 +99,10 @@ public class UserAction extends ActionSupport {
 	 */
 	public String tochange_user() {
 		HttpServletRequest request = ServletActionContext.getRequest();
+		String user_id=request.getParameter("user_id");
+		if ("".equals(user_id) || user_id == null) {
+			return "login";
+		}
 		User u = new User();
 		u = userService.findById(user.getUser_id());
 		request.setAttribute("user", u);
