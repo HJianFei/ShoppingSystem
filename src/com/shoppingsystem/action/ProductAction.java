@@ -3,7 +3,6 @@
  */
 package com.shoppingsystem.action;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +26,6 @@ public class ProductAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private Product product;
 	private ProductService productService;
-	// 上传文件三要素
-	private File file;
-	private String fileContentType;
-	private String fileFileName;
-	// 文件下载类型
-	private String contentType;
-	// 文件保存的路径
-	private String savePath;
 
 	/**
 	 * 添加商品信息
@@ -43,7 +34,7 @@ public class ProductAction extends ActionSupport {
 	 */
 	public String save() {
 
-		productService.save(product, savePath, fileFileName);
+		productService.save(product);
 		allProduct();
 		return "all_product";
 	}
@@ -135,7 +126,7 @@ public class ProductAction extends ActionSupport {
 	 * @return
 	 */
 	public String change_product() {
-		productService.update(product, file, fileFileName);
+		productService.update(product);
 		detail_product();
 		return "detail_product";
 	}
@@ -299,45 +290,4 @@ public class ProductAction extends ActionSupport {
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
-
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-
-	public String getFileContentType() {
-		return fileContentType;
-	}
-
-	public void setFileContentType(String fileContentType) {
-		this.fileContentType = fileContentType;
-	}
-
-	public String getFileFileName() {
-		return fileFileName;
-	}
-
-	public void setFileFileName(String fileFileName) {
-		this.fileFileName = fileFileName;
-	}
-
-	public String getContentType() {
-		return contentType;
-	}
-
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
-	}
-
-	public String getSavePath() {
-		return savePath;
-	}
-
-	public void setSavePath(String savePath) {
-		this.savePath = savePath;
-	}
-
 }

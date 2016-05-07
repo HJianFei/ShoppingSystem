@@ -1,7 +1,5 @@
 package com.shoppingsystem.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -11,9 +9,9 @@ import com.shoppingsystem.entity.Type;
 
 public interface ProductService {
 
-	void save(Product product, String filePath, String fileFileName);
+	void save(Product product);
 
-	void update(Product product,File file, String fileFileName);
+	void update(Product product);
 
 	void delete(int product_id);
 
